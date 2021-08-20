@@ -13,7 +13,6 @@ namespace FFMpeg;
 
 use Alchemy\BinaryDriver\ConfigurationInterface;
 use Alchemy\BinaryDriver\Exception\ExecutionFailureException;
-use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
 use FFMpeg\Driver\FFProbeDriver;
 use FFMpeg\FFProbe\DataMapping\Format;
@@ -220,7 +219,7 @@ class FFProbe
     public static function create($configuration = array(), LoggerInterface $logger = null, Cache $cache = null)
     {
         if (null === $cache) {
-            $cache = new ArrayCache();
+            $cache = new \FFMpeg\Cache();
         }
 
         return new static(FFProbeDriver::create($configuration, $logger), $cache);
